@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-footer>
       <q-toolbar>
         <q-btn
           flat
@@ -10,14 +10,26 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-space/>
+        <q-btn
+          flat
+          dense
+          round
+          icon="note_add"
+          aria-label="Add training"
+          @click="toggleLeftDrawer"
+        />
+        <q-space/>
+        <q-btn
+          flat
+          dense
+          round
+          icon="fact_check"
+          aria-label="Resume"
+          @click="toggleLeftDrawer"
+        />
       </q-toolbar>
-    </q-header>
+    </q-footer>
 
     <q-drawer
       v-model="leftDrawerOpen"
