@@ -6,9 +6,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/HomePage.vue') }]
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
+  {
+    path: '/add-training',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/NewTrainingForm.vue') }]
+  },
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
