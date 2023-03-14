@@ -14,7 +14,7 @@
         />
         <q-space/>
         <q-btn
-          class="middle-button"
+          class="middle-button shadow-15"
           dense
           round
           size="1.3rem"
@@ -36,9 +36,11 @@
       </q-toolbar>
     </q-footer>
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
+    <router-view v-slot="{ Component, route }">
+      <q-page-container>
+        <component :is="Component" :key="route.path" />
+      </q-page-container>
+    </router-view>
   </q-layout>
 </template>
 
@@ -48,7 +50,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const onClickAddTraining = () => {
-  router.push('add-training')
+  router.push('add-workout')
 }
 
 const onClickHome = () => {
@@ -63,9 +65,6 @@ const onClickHome = () => {
   background-color: var(--q-dark-page);
 }
 .middle-button {
-  -webkit-box-shadow: 0 0 14px -3px rgba(0,0,0,0.45);
-  -moz-box-shadow: 0 0 14px -3px rgba(0,0,0,0.45);
-  box-shadow: 0 0 14px -3px rgba(0,0,0,0.45);
   background-color: var(--q-primary);
   width: 5rem;
   height: 5rem;
