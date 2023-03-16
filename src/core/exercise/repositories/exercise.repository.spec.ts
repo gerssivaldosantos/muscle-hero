@@ -1,92 +1,41 @@
-import ExerciseMockRepository from 'src/core/exercise/repositories/exercise-mock.repository'
+import { describe, expect, it, beforeAll } from 'vitest'
+import { FindParams, RepositoryInterface } from 'src/core/base/repository.interface'
 import Exercise from 'src/core/exercise/models/exercise.model'
-import { v4 as uuid } from 'uuid'
-import { describe, beforeEach, it, expect, vi } from 'vitest'
-describe('ExerciseMockRepository', () => {
-  let exerciseMockRepository: ExerciseMockRepository
+import ExerciseMockRepository from 'src/core/exercise/repositories/exercise-mock.repository'
 
-  beforeEach(() => {
-    exerciseMockRepository = new ExerciseMockRepository()
+let repository: RepositoryInterface<Exercise>
+
+describe('Exercise Repository Test', () => {
+  beforeAll(() => {
+    repository = new ExerciseMockRepository()
   })
 
-  it('should insert an exercise', async () => {
-    const exercise: Exercise = {
-      id: uuid(),
-      name: 'Test exercise',
-      muscle: 'Test muscle',
-      equipment: 'Test equipment',
-      level: 'Test level',
-      videoUrls: {
-        en: 'https://example.com/video'
-      },
-      imageUrl: 'https://example.com/image',
-      instructions: ['Test instruction']
-    }
+  describe('FindMany Tests', () => {
+    it('Should return success when call without limit and offset', async () => {
+      const response: Exercise[] = await repository.findMany(new FindParams())
+      expect(response).toHaveLength(10)
+      for (const item of response) {
+        const created = await Exercise.create(item)
+        expect(created).toBeInstanceOf(Exercise)
+      }
+    })
 
-    const result = await exerciseMockRepository.insert(exercise)
+    it('Should return success when call with limit and without offset', async () => {
+      const response: Exercise[] = await repository.findMany(new FindParams({ limit: 20 }))
+      expect(response).toHaveLength(20)
+      for (const item of response) {
+        const created = await Exercise.create(item)
+        expect(created).toBeInstanceOf(Exercise)
+      }
+    })
 
-    expect(result).toBeDefined()
-    expect(result.id).toEqual(exercise.id)
-    expect(result.name).toEqual(exercise.name)
-    expect(result.muscle).toEqual(exercise.muscle)
-    expect(result.equipment).toEqual(exercise.equipment)
-    expect(result.level).toEqual(exercise.level)
-    expect(result.videoUrls).toEqual(exercise.videoUrls)
-    expect(result.imageUrl).toEqual(exercise.imageUrl)
-    expect(result.instructions).toEqual(exercise.instructions)
-  })
-
-  it('should find an exercise', async () => {
-    const exerciseId = 'test-id'
-    const exercise: Exercise = {
-      id: exerciseId,
-      name: 'Test exercise',
-      muscle: 'Test muscle',
-      equipment: 'Test equipment',
-      level: 'Test level',
-      videoUrls: {
-        en: 'https://example.com/video'
-      },
-      imageUrl: 'https://example.com/image',
-      instructions: ['Test instruction']
-    }
-
-    vi.spyOn(exerciseMockRepository, 'findOne').mockImplementation(() => Promise.resolve(exercise))
-
-    const result = await exerciseMockRepository.findOne(exerciseId)
-
-    expect(result).toBeDefined()
-    expect(result?.id).toEqual(exercise.id)
-    expect(result?.name).toEqual(exercise.name)
-    expect(result?.muscle).toEqual(exercise.muscle)
-    expect(result?.equipment).toEqual(exercise.equipment)
-    expect(result?.level).toEqual(exercise.level)
-    expect(result?.videoUrls).toEqual(exercise.videoUrls)
-    expect(result?.imageUrl).toEqual(exercise.imageUrl)
-    expect(result?.instructions).toEqual(exercise.instructions)
-  })
-
-  it('should delete an exercise', async () => {
-    const exerciseId = 'test-id'
-    const exercise: Exercise = {
-      id: exerciseId,
-      name: 'Test exercise',
-      muscle: 'Test muscle',
-      equipment: 'Test equipment',
-      level: 'Test level',
-      videoUrls: {
-        en: 'https://example.com/video'
-      },
-      imageUrl: 'https://example.com/image',
-      instructions: ['Test instruction']
-    }
-
-    vi.spyOn(exerciseMockRepository, 'findOne').mockImplementation(() => Promise.resolve(exercise))
-    vi.spyOn(exerciseMockRepository, 'delete').mockImplementation(() => Promise.resolve({ success: true }))
-
-    const result = await exerciseMockRepository.delete(exerciseId)
-
-    expect(result).toBeDefined()
-    expect(result.success).toBeTruthy()
+    it('Should return success when call with offset and without limit', async () => {
+      const response: Exercise[] = await repository.findMany(new FindParams({ offset: 20 }))
+      expect(response).toHaveLength(10)
+      for (const item of response) {
+        const created = await Exercise.create(item)
+        expect(created).toBeInstanceOf(Exercise)
+      }
+    })
   })
 })
