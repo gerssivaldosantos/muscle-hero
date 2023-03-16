@@ -2,6 +2,12 @@ export type findParams = {
   limit: number,
   offset: number,
   query?: object
+
+  constructor (params?:Record<string, any>) {
+    this.limit = params?.limit || 10
+    this.offset = params?.offset || 0
+    this.query = params?.query
+  }
 }
 
 export type deleteActionResponse = {
