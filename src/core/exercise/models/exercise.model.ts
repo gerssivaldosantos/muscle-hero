@@ -1,38 +1,117 @@
-import { IsInt, IsPositive, IsString, Length, validate } from 'class-validator'
-import { v4 as uuid } from 'uuid'
+import {
+  IsString,
+  IsEnum,
+  IsUrl,
+  IsNotEmpty,
+  IsArray,
+  ValidateNested,
+  validate,
+  IsInstance,
+  ValidationError
+} from 'class-validator'
+import { v4 as uuidv4 } from 'uuid'
+
+export enum Muscle {
+  Abs = 'Abdômen',
+  Legs = 'Quadríceps',
+  Arms = 'Bíceps',
+  Chest = 'Peito',
+  Back = 'Costas',
+  Shoulders = 'Ombros',
+  calf = 'Panturrilha',
+  hamstring = 'Posterior de coxa',
+  Traps = 'Trapézios',
+  Triceps = 'Tríceps'
+
+}
+
+export enum Equipment {
+  None = 'Nenhum',
+  Dumbbells = 'Halteres',
+  Barbell = 'Barra',
+  ResistanceBands = 'Faixas elásticas',
+  Machines = 'Máquinas',
+  FixeBar = 'Barra fixa',
+  Pole = 'Polia',
+  MachineOrDumbbells = 'Máquina ou Halteres',
+  Machine = 'Máquina',
+  LegCurlMachine = 'Máquina de flexão de pernas',
+  legTableMachine = 'Máquina de mesa flexora',
+  Bench = 'Banco'
+
+}
+
+export enum Level {
+  Beginner = 'Iniciante',
+  Intermediate = 'Intermediário',
+  Advanced = 'Avançado',
+}
+
+export class VideoUrls {
+  @IsString()
+  @IsNotEmpty()
+    ptBr: string | undefined
+
+  @IsString()
+  @IsNotEmpty()
+    en: string | undefined
+
+  constructor (params: VideoUrls) {
+    this.ptBr = params.ptBr
+    this.en = params.en
+  }
+}
 
 export default class Exercise {
-  @IsString()
-    id?: string
+  id: string
 
-  @Length(1, 50)
+  @IsString()
+  @IsNotEmpty()
     name: string
 
-  @IsInt()
-  @IsPositive()
-    sets: number
+  @IsEnum(Muscle)
+    muscle: string
 
-  @IsInt()
-  @IsPositive()
-    reps: number
+  @IsEnum(Equipment)
+    equipment: string
 
-  @IsInt()
-  @IsPositive()
-    restTime: number
+  @IsEnum(Level)
+    level: string
 
-  constructor (id: string | undefined, name: string, sets: number, reps: number, restTime: number) {
-    this.id = id || uuid()
-    this.name = name
-    this.sets = sets
-    this.reps = reps
-    this.restTime = restTime
+  @ValidateNested()
+  @IsInstance(VideoUrls)
+    videoUrls: object
+
+  @IsUrl()
+  @IsNotEmpty()
+    imageUrl: string
+
+  @IsArray()
+  @IsNotEmpty({ each: true })
+  @IsString({ each: true })
+    instructions: string[]
+
+  constructor (params: Exercise) {
+    this.id = params.id ?? uuidv4()
+    this.name = params.name
+    this.muscle = params.muscle
+    this.equipment = params.equipment
+    this.level = params.level
+    this.videoUrls = params.videoUrls
+    this.imageUrl = params.imageUrl
+    this.instructions = params.instructions
   }
 
-  public static async create (data: Record<string, never>): Promise<Exercise> {
-    const exercise = new Exercise(data.id, data.name, data.sets, data.reps, data.restTime)
+  static async create (data: any): Promise<Exercise | ValidationError[]> {
+    const exercise = new Exercise(
+      {
+        ...data,
+        videoUrls: new VideoUrls(data.videoUrls)
+      }
+    )
     const errors = await validate(exercise)
     if (errors.length > 0) {
-      throw new Error(errors.toString())
+      return errors
     }
     return exercise
   }
