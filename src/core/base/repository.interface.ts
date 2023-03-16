@@ -1,6 +1,6 @@
-export type findParams = {
-  limit: number,
-  offset: number,
+export class FindParams {
+  limit: number
+  offset: number
   query?: object
 
   constructor (params?:Record<string, any>) {
@@ -18,7 +18,7 @@ export type deleteActionResponse = {
 export interface RepositoryInterface <T> {
   insert (item:T): Promise<T | undefined>
   findOne (id: string): Promise<T | undefined>
-  findMany (params: findParams): Promise<T[]>
+  findMany (params: FindParams): Promise<T[]>
   update (id: string, item:T): Promise<boolean>
   delete (id: string): Promise<deleteActionResponse>
 }
