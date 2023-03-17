@@ -10,15 +10,16 @@ export class FindParams {
   }
 }
 
-export type deleteActionResponse = {
+export type requestResult<M> = {
   success: boolean,
-  reason?: string
+  info?: M[],
+  message?: string
 }
 
-export interface RepositoryInterface <T> {
-  insert (item:T): Promise<T | undefined>
-  findOne (id: string): Promise<T | undefined>
-  findMany (params: FindParams): Promise<T[]>
-  update (id: string, item:T): Promise<boolean>
-  delete (id: string): Promise<deleteActionResponse>
+export interface RepositoryInterface <M> {
+  insert (item:M): Promise<requestResult<M>>
+  findOne (id: string): Promise<requestResult<M>>
+  findMany (params: FindParams): Promise<requestResult<M>>
+  update (id: string, item:M): Promise<requestResult<M>>
+  delete (id: string): Promise<requestResult<M>>
 }
