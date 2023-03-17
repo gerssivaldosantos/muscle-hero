@@ -10,6 +10,8 @@ import {
   ValidationError
 } from 'class-validator'
 import { v4 as uuidv4 } from 'uuid'
+import { faker } from '@faker-js/faker'
+import { getRandomFromEnum } from 'src/core/base/helpers'
 
 export enum Muscle {
   Abs = 'Abdômen',
@@ -114,5 +116,25 @@ export default class Exercise {
       return errors
     }
     return exercise
+  }
+
+  static getRandomData (): Omit<Exercise, 'id'> {
+    return {
+      name: faker.name.jobTitle(),
+      muscle: getRandomFromEnum<string>(Muscle),
+      equipment: getRandomFromEnum<string>(Equipment),
+      level: getRandomFromEnum<string>(Level),
+      videoUrls: {
+        en: faker.internet.url(),
+        ptBr: faker.internet.url()
+      },
+      imageUrl: faker.internet.url(),
+      instructions: [
+        faker.name.jobDescriptor(),
+        faker.name.jobDescriptor(),
+        faker.name.jobDescriptor(),
+        faker.name.jobDescriptor()
+      ]
+    }
   }
 }
