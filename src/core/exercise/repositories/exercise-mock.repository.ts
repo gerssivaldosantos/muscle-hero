@@ -12,10 +12,10 @@ export default class ExerciseMockRepository implements ExerciseRepositoryInterfa
     try {
       const response:Exercise[] = exercisesMock.slice(params.offset, params.limit + params.offset)
       return Promise.resolve({ success: true, info: response })
-    } catch (error:any) {
+    } catch (error:unknown) {
       return Promise.resolve({
         success: false,
-        message: `${error.message || error}`
+        message: `${error}`
       })
     }
   }
@@ -24,11 +24,11 @@ export default class ExerciseMockRepository implements ExerciseRepositoryInterfa
     return Promise.resolve({ success: false })
   }
 
-  insert (item: Exercise): Promise<requestResult<Exercise>> {
+  insert (item: Omit<Exercise, 'id'>): Promise<requestResult<Exercise>> {
     return Promise.resolve({ success: false })
   }
 
-  update (id: string, item: Exercise): Promise<requestResult<Exercise>> {
+  update (id: string, item: Omit<Exercise, 'id'>): Promise<requestResult<Exercise>> {
     return Promise.resolve({ success: false })
   }
 }
