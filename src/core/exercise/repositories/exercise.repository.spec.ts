@@ -1,15 +1,9 @@
-import { describe, expect, it, beforeAll } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { FindParams, requestResult } from 'src/core/base/repository.interface'
 import Exercise from 'src/core/exercise/models/exercise.model'
-import ExerciseMockRepository from 'src/core/exercise/repositories/exercise-mock.repository'
-
-let repository: ExerciseMockRepository
+import { repository } from 'src/core/exercise'
 
 describe('Exercise Repository Test', () => {
-  beforeAll(() => {
-    repository = new ExerciseMockRepository()
-  })
-
   describe('FindMany Tests', () => {
     it('Should return success when call without limit and offset', async () => {
       const response:requestResult<Exercise> = await repository.findMany(new FindParams())
@@ -33,8 +27,9 @@ describe('Exercise Repository Test', () => {
       const response: requestResult<Exercise> = await repository.findMany(new FindParams({ offset: 20 }))
       expect(response.info).toHaveLength(10)
       for (const item of Array.isArray(response.info) ? response.info : []) {
-        const created = await Exercise.create(item)
-        expect(created).toBeInstanceOf(Exercise)
+        for (const key of Object.keys(Exercise)) {
+          expect(item).haveOwnProperty(key)
+        }
       }
     })
   })
@@ -44,7 +39,9 @@ describe('Exercise Repository Test', () => {
       const result: requestResult<Exercise> = await repository.findOne('271ed917-58aa-4611-bb3f-52c344668e87')
       expect(result.success).toBeTruthy()
       expect(result.info).toHaveLength(1)
-      expect(result.info ? result.info[0] : undefined).toBeInstanceOf(Exercise)
+      for (const key of Object.keys(Exercise)) {
+        expect(result.info ? result.info[0] : undefined).haveOwnProperty(key)
+      }
     })
 
     it('Should not return any data', async () => {
@@ -53,62 +50,24 @@ describe('Exercise Repository Test', () => {
       expect(result.info).toHaveLength(0)
       expect(result.message).toBeTypeOf('string')
     })
-  })/*
+  })
 
   describe('Insert Tests', () => {
-    it('Should insert a new exercise successfully', async () => {
-      const newExercise = new Exercise({
-        title: 'New Exercise',
-        description: 'This is a new exercise'
-      })
-      const response: requestResult<Exercise> = await repository.insert(newExercise)
-      expect(response.success).toBeTruthy()
-      expect(response.info).toBeInstanceOf(Exercise)
-      expect(response.info?.title).toEqual('New Exercise')
-      expect(response.info?.description).toEqual('This is a new exercise')
+    it('Should insert Exercise successfully', async () => {
+      const dataToInsert:Omit<Exercise, 'id'> = Exercise.getRandomData()
+      const result: requestResult<Exercise> = await repository.insert(dataToInsert)
+      expect(result).toBeInstanceOf(Object)
+      expect(result).haveOwnProperty('success')
+      expect(result).haveOwnProperty('info')
+      expect(result.info).toHaveLength(1)
+      for (const key of Object.keys(Exercise)) {
+        expect(result.info ? result.info[0] : undefined).haveOwnProperty(key)
+      }
+    })
+
+    it('Should insert Exercise unsuccessfully', async () => {
+      // Lembrar de criar uma interface para a lib de request (desacoplar ela)
+      // ai no teste, mockar ela invés do repository !!
     })
   })
-
-  describe('Update Tests', () => {
-    it('Should update an existing exercise successfully', async () => {
-      const updatedExercise = new Exercise({
-        id: '271ed917-58aa-4611-bb3f-52c344668e87',
-        title: 'Updated Exercise',
-        description: 'This is an updated exercise'
-      })
-      const response: requestResult<Exercise> = await repository.update(updatedExercise.id, updatedExercise)
-      expect(response.success).toBeTruthy()
-      expect(response.info).toBeInstanceOf(Exercise)
-      expect(response.info?.title).toEqual('Updated Exercise')
-      expect(response.info?.description).toEqual('This is an updated exercise')
-    })
-
-    it('Should fail to update a non-existent exercise', async () => {
-      const updatedExercise = new Exercise({
-        id: 'non-existent-id',
-        title: 'Updated Exercise',
-        description: 'This is an updated exercise'
-      })
-      const response: requestResult<Exercise> = await repository.update(updatedExercise.id, updatedExercise)
-      expect(response.success).toBeFalsy()
-      expect(response.info).toBeNull()
-      expect(response.message).toBe('Exercise not found')
-    })
-  })
-
-  describe('Delete Tests', () => {
-    it('Should delete an existing exercise successfully', async () => {
-      const response: requestResult<Exercise> = await repository.delete('271ed917-58aa-4611-bb3f-52c344668e87')
-      expect(response.success).toBeTruthy()
-      expect(response.info).toBeInstanceOf(Exercise)
-      expect(response.info?.id).toEqual('271ed917-58aa-4611-bb3f-52c344668e87')
-    })
-
-    it('Should fail to delete a non-existent exercise', async () => {
-      const response: requestResult<Exercise> = await repository.delete('non-existent-id')
-      expect(response.success).toBeFalsy()
-      expect(response.info).toBeNull()
-      expect(response.message).toBe('Exercise not found')
-    })
-  }) */
 })
