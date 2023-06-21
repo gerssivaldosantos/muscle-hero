@@ -1,6 +1,6 @@
 <template>
     <q-page>
-      <q-header class="header shadow-5">
+      <q-header class="header default-shadow">
         <div class="full-width row q-py-md q-pa-md">
           <div class="col">
             <q-avatar>
@@ -45,7 +45,7 @@ const routeCards = [
   {
     name: 'Weight Resume',
     icon: 'fitness_center'
-  },
+  }/*,
   {
     name: 'Diet',
     icon: 'restaurant'
@@ -57,7 +57,7 @@ const routeCards = [
   {
     name: 'Friends',
     icon: 'groups'
-  }
+  } */
 ]
 
 const progress = ref(0.77)

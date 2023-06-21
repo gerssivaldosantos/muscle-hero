@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-footer class="footer shadow-5">
+    <q-footer class="footer default-shadow">
       <q-toolbar class="q-pt-xs">
         <q-btn
           flat
@@ -8,13 +8,13 @@
           round
           size="1.3rem"
           icon="home"
-          class="bg-primary shadow-5"
+          class="bg-primary default-shadow"
           aria-label="Menu"
           @click="onClickHome"
         />
         <q-space/>
         <q-btn
-          class="middle-button shadow-15"
+          class="middle-button default-shadow"
           dense
           round
           size="1.3rem"
@@ -28,7 +28,7 @@
           dense
           round
           size="1.3rem"
-          class="bg-primary"
+          class="bg-primary default-shadow"
           icon="fact_check"
           aria-label="Resume"
           @click="null"
