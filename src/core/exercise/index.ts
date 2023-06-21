@@ -1,5 +1,5 @@
-import { defaultRepository } from 'src/core/base/default'
+import { ExerciseRepository } from 'src/core/base/default'
 
-const repository = defaultRepository
+const repository = ExerciseRepository
 
 export { repository }
