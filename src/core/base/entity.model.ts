@@ -18,7 +18,7 @@ export class EntityModelBase {
    * @param {string} [id] - The optional ID of the entity. If not provided, a new UUID will be generated.
    * @memberof EntityModelBase
    */
-  constructor (id: string) {
+  constructor (id: string | undefined) {
     /**
      * The unique identifier of the entity.
      * @type {string}
