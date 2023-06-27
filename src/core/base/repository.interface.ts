@@ -1,7 +1,7 @@
 export class FindParams {
   limit: number
   offset: number
-  query?: object
+  query?: Record<string, any>
 
   constructor (params?:Record<string, any>) {
     this.limit = params?.limit || 10

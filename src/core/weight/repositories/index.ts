@@ -1,3 +1,3 @@
-import { WeightInternalStorageRepository } from 'src/core/weight/repositories/implementations/internal-storage.repository'
+import { WeightFirebaseRepository } from 'src/core/weight/repositories/implementations/weight.firebase.repository'
 
-export const weightRepositoryInstance = new WeightInternalStorageRepository()
+export const weightRepositoryInstance = new WeightFirebaseRepository()
