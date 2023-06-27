@@ -1,5 +1,5 @@
 export type createWeight = {
-  id: string
+  id?: string
   value: number
   createdAt: Date
 }
