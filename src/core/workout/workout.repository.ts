@@ -1,4 +1,4 @@
-import { deleteActionResponse, findParams, RepositoryInterface } from 'src/core/base/repository.interface'
+import { deleteActionResponse, FindParams, RepositoryInterface } from 'src/core/base/repository.interface'
 import Workout from 'src/core/workout/models/workout.model'
 
 export class WorkoutRepository implements RepositoryInterface<Workout> {
@@ -6,7 +6,7 @@ export class WorkoutRepository implements RepositoryInterface<Workout> {
     return Promise.resolve({ success: true })
   }
 
-  findMany (params: findParams): Promise<Workout[]> {
+  findMany (params: FindParams): Promise<Workout[]> {
     return Promise.resolve([])
   }
 
