@@ -1,4 +1,4 @@
-import { Length, validate, IsArray, ArrayMinSize, IsInstance, IsString } from 'class-validator'
+import { ArrayMinSize, IsArray, IsInstance, IsString, Length, validate } from 'class-validator'
 import Exercise from 'src/core/exercise/model/exercise.model'
 import { v4 as uuid } from 'uuid'
 

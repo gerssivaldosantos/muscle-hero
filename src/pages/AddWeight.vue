@@ -1,13 +1,13 @@
 <template>
-<q-page>
-  <q-form>
-<q-input v-model="weight" type="number" label="Your Weight" />
-    <q-btn @click="saveWeight" color="primary" label="Save"/>
-  </q-form>
-</q-page>
+  <q-page>
+    <q-form>
+      <q-input v-model="weight" label="Your Weight" type="number"/>
+      <q-btn color="primary" label="Save" @click="saveWeight"/>
+    </q-form>
+  </q-page>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { weightRepositoryInstance } from 'src/core/weight/repository'
 import { WeightModel } from 'src/core/weight/model/weight.model'

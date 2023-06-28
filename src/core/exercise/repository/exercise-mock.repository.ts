@@ -5,7 +5,7 @@ import { exercisesMock } from 'src/mocks/exercises'
 
 export default class ExerciseMockRepository implements ExerciseRepositoryInterface {
   findMany (params: FindParams): Promise<Exercise[]> {
-    const response:Exercise[] = exercisesMock.slice(params.offset, params.limit + params.offset)
+    const response: Exercise[] = exercisesMock.slice(params.offset, params.limit + params.offset)
     return Promise.resolve(response)
   }
 

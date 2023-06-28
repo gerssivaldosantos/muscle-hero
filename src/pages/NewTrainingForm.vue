@@ -1,46 +1,46 @@
 <template>
-    <q-page>
-      <q-header class="bg-transparent">
-        <q-toolbar>
-          <q-toolbar-title>
-            Adicionar Treino
-          </q-toolbar-title>
-        </q-toolbar>
-      </q-header>
-      <q-form
-        class="q-pa-xl q-gutter-lg"
-      >
-        <q-input
-          filled
-          v-model="name"
-          label="Your name *"
-          hint="Name and surname"
-          lazy-rules
-          :rules="[ val => val && val.length > 0 || 'Please type something']"
-        />
+  <q-page>
+    <q-header class="bg-transparent">
+      <q-toolbar>
+        <q-toolbar-title>
+          Adicionar Treino
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+    <q-form
+      class="q-pa-xl q-gutter-lg"
+    >
+      <q-input
+        v-model="name"
+        :rules="[ val => val && val.length > 0 || 'Please type something']"
+        filled
+        hint="Name and surname"
+        label="Your name *"
+        lazy-rules
+      />
 
-        <q-input
-          filled
-          type="number"
-          v-model="age"
-          label="Your age *"
-          lazy-rules
-          :rules="[
+      <q-input
+        v-model="age"
+        :rules="[
           val => val !== null && val !== '' || 'Please type your age',
           val => val > 0 && val < 100 || 'Please type a real age'
         ]"
-        />
+        filled
+        label="Your age *"
+        lazy-rules
+        type="number"
+      />
 
-        <q-toggle v-model="accept" label="I accept the license and terms" />
+      <q-toggle v-model="accept" label="I accept the license and terms"/>
 
-        <div>
-          <q-btn label="Submit" type="submit" color="primary"/>
-          <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
-        </div>
-      </q-form>
-    </q-page>
+      <div>
+        <q-btn color="primary" label="Submit" type="submit"/>
+        <q-btn class="q-ml-sm" color="primary" flat label="Reset" type="reset"/>
+      </div>
+    </q-form>
+  </q-page>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 
 </script>

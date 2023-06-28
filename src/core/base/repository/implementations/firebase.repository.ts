@@ -1,7 +1,6 @@
-
 import { EntityModelBase } from 'src/core/base/model/entity.model'
 import { db } from 'boot/firebase-config'
-import { collection, setDoc, doc, query, /* where, */ getDocs } from 'firebase/firestore'
+import { collection, doc, getDocs, query, setDoc } from 'firebase/firestore'
 import { deleteActionResponse, FindParams, RepositoryInterface } from 'src/core/base/repository/repository.interface'
 
 export class FirebaseRepository<T extends EntityModelBase> implements RepositoryInterface<T> {

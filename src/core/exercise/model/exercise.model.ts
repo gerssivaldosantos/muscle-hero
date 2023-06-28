@@ -1,12 +1,12 @@
 import {
-  IsString,
-  IsEnum,
-  IsUrl,
-  IsNotEmpty,
   IsArray,
-  ValidateNested,
-  validate,
+  IsEnum,
   IsInstance,
+  IsNotEmpty,
+  IsString,
+  IsUrl,
+  validate,
+  ValidateNested,
   ValidationError
 } from 'class-validator'
 import { v4 as uuidv4 } from 'uuid'

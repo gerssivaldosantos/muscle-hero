@@ -1,33 +1,37 @@
 <template>
   <q-page class="container">
 
-          <q-slide-item @right="onDelete" v-for="{id,value, createdAt} in weights" :key="id" class="slide">
-            <template v-slot:right>
-              <div class="row items-center">
-                Delete <q-icon right name="delete" />
-              </div>
-            </template>
-            <q-item>
-              <q-item-section class="weight-value">
-                {{value}}
-              </q-item-section>
-              <q-item-section class="weight-date">{{createdAt.toDate().toLocaleString('pt-BR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true
-              })}}</q-item-section>
-            </q-item>
+    <q-slide-item v-for="{id,value, createdAt} in weights" :key="id" class="slide" @right="onDelete">
+      <template v-slot:right>
+        <div class="row items-center">
+          Delete
+          <q-icon name="delete" right/>
+        </div>
+      </template>
+      <q-item>
+        <q-item-section class="weight-value">
+          {{ value }}
+        </q-item-section>
+        <q-item-section class="weight-date">{{
+            createdAt.toDate().toLocaleString('pt-BR', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              hour12: true
+            })
+          }}
+        </q-item-section>
+      </q-item>
 
-          </q-slide-item>
+    </q-slide-item>
 
-    <q-btn class="add-weight-button" round size="1.5rem" icon="add" @click="router.push('/add-weight')" color="accent" />
+    <q-btn class="add-weight-button" color="accent" icon="add" round size="1.5rem" @click="router.push('/add-weight')"/>
   </q-page>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import { onMounted, ref } from 'vue'
 import { weightRepositoryInstance } from 'src/core/weight/repository'
@@ -36,8 +40,11 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const weights = ref()
 
-const onDelete = (callback:any) => {
-  setTimeout(() => { alert('delete'); callback.reset() }, 2000)
+const onDelete = (callback: any) => {
+  setTimeout(() => {
+    alert('delete')
+    callback.reset()
+  }, 2000)
 }
 
 const onLoad = async () => {
@@ -57,6 +64,7 @@ onMounted(onLoad)
   align-items: center;
 
 }
+
 .weight-card {
 
 }
@@ -71,6 +79,7 @@ onMounted(onLoad)
   bottom: 5rem;
   right: 20px;
 }
+
 .slide {
   background-color: var(--q-primary);
   width: calc(100% - 2rem);

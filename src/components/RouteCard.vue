@@ -1,16 +1,16 @@
 <template>
   <q-btn class="button bg-primary q-pa-sm row">
-      <div class="side text-subtitle1 col">
-        {{props.name}}
-      </div>
-      <div class="col  ">
-        <q-icon class="icon" size="3.5rem" :name="props.icon"/>
-      </div>
+    <div class="side text-subtitle1 col">
+      {{ props.name }}
+    </div>
+    <div class="col  ">
+      <q-icon :name="props.icon" class="icon" size="3.5rem"/>
+    </div>
   </q-btn>
 
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 
 const props = defineProps({
   name: {
@@ -31,6 +31,7 @@ const props = defineProps({
   width: 100%;
   height: 8rem
 }
+
 .icon {
   position: absolute;
   right: 1.2rem;

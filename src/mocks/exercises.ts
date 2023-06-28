@@ -1,6 +1,6 @@
 import Exercise from 'src/core/exercise/model/exercise.model'
 
-export const exercisesMock:Exercise[] = [
+export const exercisesMock: Exercise[] = [
   {
     name: 'Prancha',
     muscle: 'Abdômen',

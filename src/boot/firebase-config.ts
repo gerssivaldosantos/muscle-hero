@@ -1,8 +1,5 @@
 import { FirebaseApp, initializeApp } from 'firebase/app'
-import {
-  Firestore,
-  getFirestore
-} from 'firebase/firestore'
+import { Firestore, getFirestore } from 'firebase/firestore'
 
 const clientCredentials = {
   apiKey: process.env.API_KEY,
