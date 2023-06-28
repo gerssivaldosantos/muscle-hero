@@ -13,7 +13,7 @@ import {
   FindParams,
   deleteActionResponse,
   RepositoryInterface
-} from 'src/core/base/repository.interface'
+} from 'src/core/base/repository/repository.interface'
 
 // Inicializar o app do Firebase
 const firebaseConfig = {

@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { weightRepositoryInstance } from 'src/core/weight/repositories/index'
+import { weightRepositoryInstance } from 'src/core/weight/repository/index'
 import { createWeight } from 'src/core/weight/dtos/create-weight.dto'
 import { faker } from '@faker-js/faker'
-import { WeightModel } from 'src/core/weight/models/weight.model'
-import { FirebaseRepository } from 'src/core/base/firebase.repository'
+import { WeightModel } from 'src/core/weight/model/weight.model'
+import { FirebaseRepository } from 'src/core/base/repository/implementations/firebase.repository'
 const createWeightData = ():createWeight => {
   return {
     createdAt: faker.date.past(),
