@@ -12,6 +12,16 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', component: () => import('pages/NewTrainingForm.vue') }]
   },
   {
+    path: '/list-weight',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/ListWeight.vue') }]
+  },
+  {
+    path: '/add-weight',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/AddWeight.vue') }]
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
   }

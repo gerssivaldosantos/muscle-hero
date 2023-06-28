@@ -31,7 +31,9 @@
           v-for="routeCard in routeCards"
           :key="routeCard.name"
           :name="routeCard.name"
-          :icon="routeCard.icon"/>
+          :icon="routeCard.icon"
+          @click="router.push(routeCard.route)"
+        />
       </div>
     </q-page>
 </template>
@@ -40,11 +42,14 @@
 
 import { ref } from 'vue'
 import RouteCard from 'components/RouteCard.vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const routeCards = [
   {
     name: 'Weight Resume',
-    icon: 'fitness_center'
+    icon: 'fitness_center',
+    route: '/list-weight'
   }/*,
   {
     name: 'Diet',

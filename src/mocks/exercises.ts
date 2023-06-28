@@ -1,4 +1,4 @@
-import Exercise from 'src/core/exercise/models/exercise.model'
+import Exercise from 'src/core/exercise/model/exercise.model'
 
 export const exercisesMock:Exercise[] = [
   {

@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll } from 'vitest'
-import { FindParams, RepositoryInterface } from 'src/core/base/repository.interface'
-import Exercise from 'src/core/exercise/models/exercise.model'
-import ExerciseMockRepository from 'src/core/exercise/repositories/exercise-mock.repository'
+import { FindParams, RepositoryInterface } from 'src/core/base/repository/repository.interface'
+import Exercise from 'src/core/exercise/model/exercise.model'
+import ExerciseMockRepository from 'src/core/exercise/repository/exercise-mock.repository'
 
 let repository: RepositoryInterface<Exercise>
 

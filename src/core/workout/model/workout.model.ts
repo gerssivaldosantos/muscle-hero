@@ -1,5 +1,5 @@
 import { Length, validate, IsArray, ArrayMinSize, IsInstance, IsString } from 'class-validator'
-import Exercise from 'src/core/exercise/models/exercise.model'
+import Exercise from 'src/core/exercise/model/exercise.model'
 import { v4 as uuid } from 'uuid'
 
 export default class Workout {

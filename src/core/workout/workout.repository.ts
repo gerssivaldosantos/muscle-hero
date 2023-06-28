@@ -1,5 +1,5 @@
-import { deleteActionResponse, FindParams, RepositoryInterface } from 'src/core/base/repository.interface'
-import Workout from 'src/core/workout/models/workout.model'
+import { deleteActionResponse, FindParams, RepositoryInterface } from 'src/core/base/repository/repository.interface'
+import Workout from 'src/core/workout/model/workout.model'
 
 export class WorkoutRepository implements RepositoryInterface<Workout> {
   delete (id: string): Promise<deleteActionResponse> {
