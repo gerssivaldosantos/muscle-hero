@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { createWeight } from 'src/core/weight/dtos/create-weight.dto'
+import { createWeight } from 'src/core/weight/application/dto/create-weight.dto'
 import { faker } from '@faker-js/faker'
-import { WeightModel } from 'src/core/weight/model/weight.model'
+import { WeightModel } from 'src/core/weight/domain/model/weight.model'
 
 describe('Weight Model Test', () => {
   it('Should return an instance of WeightModel', async () => {
