@@ -34,7 +34,7 @@
 <script lang="ts" setup>
 
 import { onMounted, ref } from 'vue'
-import { weightRepositoryInstance } from 'src/core/weight/repository'
+import { weightRepositoryInstance } from 'src/core/weight/infra/repository'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

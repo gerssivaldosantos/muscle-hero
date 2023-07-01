@@ -9,8 +9,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { weightRepositoryInstance } from 'src/core/weight/repository'
-import { WeightModel } from 'src/core/weight/model/weight.model'
+import { weightRepositoryInstance } from 'src/core/weight/infra/repository'
+import { WeightModel } from 'src/core/weight/domain/model/weight.model'
 import { useRouter } from 'vue-router'
 
 const weight = ref()
