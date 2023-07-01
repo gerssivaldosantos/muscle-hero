@@ -61,7 +61,7 @@ export class FirebaseRepository<T extends EntityModelBase> implements Repository
     }
   }
 
-  async update (id: string, item: T): Promise<repositoryActionResponse> {
+  async update (id: string, item: object): Promise<repositoryActionResponse> {
     try {
       await updateDoc(doc(this.database, this.collectionName, id), item as object)
       return { success: true }
