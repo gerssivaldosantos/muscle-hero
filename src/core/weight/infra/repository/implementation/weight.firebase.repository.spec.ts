@@ -2,12 +2,12 @@ import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { createWeight } from 'src/core/weight/application/dto/create-weight.dto'
 import { faker } from '@faker-js/faker'
 import { WeightModel } from 'src/core/weight/domain/model/weight.model'
-import { FirebaseRepository } from 'src/core/base/repository/implementations/firebase.repository'
+import { FirebaseRepository } from 'src/core/base/infra/repository/implementations/firebase.repository'
 import { FirebaseApp, initializeApp } from 'firebase/app'
 import { Firestore, getFirestore } from 'firebase/firestore'
 import { WeightFirebaseRepository } from 'src/core/weight/infra/repository/implementation/weight.firebase.repository'
 import dotenv from 'dotenv'
-import { FindParams } from 'src/core/base/repository/repository.interface'
+import { FindParams } from 'src/core/base/infra/repository/repository.interface'
 
 dotenv.config()
 

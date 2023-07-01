@@ -1,4 +1,4 @@
-import { deleteActionResponse, FindParams, RepositoryInterface } from 'src/core/base/repository/repository.interface'
+import { deleteActionResponse, FindParams, RepositoryInterface } from 'src/core/base/infra/repository/repository.interface'
 import Workout from 'src/core/workout/model/workout.model'
 
 export class WorkoutRepository implements RepositoryInterface<Workout> {

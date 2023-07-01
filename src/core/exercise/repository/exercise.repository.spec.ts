@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from 'vitest'
-import { FindParams, RepositoryInterface } from 'src/core/base/repository/repository.interface'
+import { FindParams, RepositoryInterface } from 'src/core/base/infra/repository/repository.interface'
 import Exercise from 'src/core/exercise/model/exercise.model'
 import ExerciseMockRepository from 'src/core/exercise/repository/exercise-mock.repository'
 

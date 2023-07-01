@@ -1,4 +1,4 @@
-import { deleteActionResponse, FindParams } from 'src/core/base/repository/repository.interface'
+import { deleteActionResponse, FindParams } from 'src/core/base/infra/repository/repository.interface'
 import Exercise from 'src/core/exercise/model/exercise.model'
 import ExerciseRepositoryInterface from 'src/core/exercise/repository/exercise.repository.interface'
 import { exercisesMock } from 'src/mocks/exercises'

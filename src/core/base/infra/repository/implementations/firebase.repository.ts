@@ -1,4 +1,4 @@
-import { EntityModelBase } from 'src/core/base/model/entity.model'
+import { EntityModelBase } from 'src/core/base/domain/model/entity.model'
 import {
   collection,
   deleteDoc,
@@ -12,7 +12,7 @@ import {
   setDoc,
   updateDoc
 } from 'firebase/firestore'
-import { FindParams, repositoryActionResponse, RepositoryInterface } from 'src/core/base/repository/repository.interface'
+import { FindParams, repositoryActionResponse, RepositoryInterface } from 'src/core/base/infra/repository/repository.interface'
 import { CollectionReference } from '@firebase/firestore'
 
 /**

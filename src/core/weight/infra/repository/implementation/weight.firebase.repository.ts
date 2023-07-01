@@ -1,4 +1,4 @@
-import { FirebaseRepository } from 'src/core/base/repository/implementations/firebase.repository'
+import { FirebaseRepository } from 'src/core/base/infra/repository/implementations/firebase.repository'
 import { WeightModel } from 'src/core/weight/domain/model/weight.model'
 import { Firestore } from 'firebase/firestore'
 

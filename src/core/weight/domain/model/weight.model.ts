@@ -1,6 +1,6 @@
 import { IsDate, IsNumber } from 'class-validator'
 import { createWeight } from 'src/core/weight/application/dto/create-weight.dto'
-import { EntityModelBase } from 'src/core/base/model/entity.model'
+import { EntityModelBase } from 'src/core/base/domain/model/entity.model'
 
 /**
  * Model representing a weight entry.
